@@ -5,7 +5,7 @@
     <link rel="icon" href="/favicon.ico">
 </head>
 
-<h1 class="text-8xl font-bold text-center mt-10"> 
+<h1 class="font-cursive text-8xl font-bold text-center mt-10"> 
     Victoria y Luis 
 </h1>
 <div>
@@ -24,7 +24,7 @@
     <iframe
     title="Ubicación del salón de eventos"
     width="600" 
-    height="450" 
+    height="400" 
     style="border:0" 
     loading="lazy" 
     allowfullscreen
@@ -41,9 +41,9 @@
         background-color: theme(--color-gray-100);
     }
     h1, h2 {
-        color: orangered
+        color: black
     }
     p {
-        color: white
+        color: black
     }
 </style>   

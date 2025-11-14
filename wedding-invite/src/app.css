@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Rubik+80s+Fade&family=Tangerine:wght@400;700&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@theme {
+    --font-sans: 'Noto Sans', sans-serif;
+    --font-cursive: 'Tangerine', cursive;
+    --font-monse : 'Montserrat', sans-serif;
+    --font-roboto-serif: 'Roboto Serif', serif;
+}
+
 body {
-    --bg0: #10172a;
+    --bg0: #F7D9BC;
     background-color: var(--bg0);
+    font-family: var(--font-roboto-serif);
 }
