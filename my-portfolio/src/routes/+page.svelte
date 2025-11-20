@@ -3,7 +3,7 @@
 </script>
 
 <section class="hero container">
-	<h1>Welcome</h1>
+	<h1>Viktor Zepeda Sanchez</h1>
 	<p>Hi — I'm a developer. This is a minimal portfolio. See my projects below and feel free to reach out.</p>
 </section>
 
