@@ -1,24 +1,35 @@
+<script>
+  import AnimatedElement from '$lib/AnimatedElement.svelte';
+</script>
 <head>
     <title>Invitación de Boda - Victoria y Luis</title>
     <meta name="description" content="Únete a nosotros para celebrar nuestro matrimonio el 15 de Agosto de 2024.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/favicon.ico">
 </head>
-
-<h1 class="font-cursive text-8xl font-bold text-center mt-10"> 
-    Victoria y Luis 
-</h1>
 <div>
-    <p class="text-5xl text-center mt-5">
-        Te invitamos a celebrar nuestro matrimonio
-    </p>
+    <h1 class="font-cursive text-8xl font-bold text-center mt-10"> 
+    Victoria y Luis 
+    </h1>
+</div>
+
+<div class="full-height">
+    <AnimatedElement>
+    <p class="text-5xl text-center mt-5"> Te invitamos a celebrar nuestro matrimonio</p>
     <h2 class="text-6xl text-center mt-10">
         Centro de convenciones Tlatelolco
-        <p class="text-5xl text-center mt-2">
-            29 de Mayo de 2026
-        </p>
+        <p class="text-5xl text-center mt-2"> 29 de Mayo de 2026 </p>
     </h2>
+</AnimatedElement>
 </div>
+
+<div class="full-height">
+  <AnimatedElement>
+    <h2 class="text-5xl text-center">Ceremonia Religiosa</h2>
+    <p class="text-3xl mt-4 text-center">4:00 PM</p>
+  </AnimatedElement>
+</div>
+
 
 <div class ="flex flex-col items-center mt-10">
     <iframe
@@ -46,4 +57,10 @@
     p {
         color: black
     }
+    .full-height {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  }
 </style>   

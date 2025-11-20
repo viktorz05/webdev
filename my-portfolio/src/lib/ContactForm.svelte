@@ -7,7 +7,7 @@
 
   // Default endpoint points to Formspree placeholder. Replace with your form endpoint
   // e.g. https://formspree.io/f/abcd1234
-  export let endpoint = 'https://formspree.io/f/yourformid';
+  export let endpoint = 'https://formspree.io/f/xrbrawrn';
 
   // Honeypot field for spam
   let honeypot = '';
@@ -50,8 +50,8 @@
 
   onMount(() => {
     // provide helpful console hint for replacing the placeholder endpoint
-    if (endpoint.includes('yourformid')) {
-      console.info('ContactForm: Replace the default Formspree endpoint with your form ID. Example: https://formspree.io/f/abcd1234');
+    if (endpoint.includes('xrbrawrn')) {
+      console.info('ContactForm: Replace the default Formspree endpoint with your form ID. Example: https://formspree.io/f/xrbrawrn');
     }
   });
 </script>
@@ -87,7 +87,7 @@
   {#if status === 'success'}
     <p class="form-success">Thanks — your message was sent.</p>
   {:else if status === 'error'}
-    <p class="form-error">Something went wrong. You can email me directly at <a href="mailto:you@example.com">you@example.com</a>.</p>
+    <p class="form-error">Something went wrong. You can email me directly at <a href="mailto:bekzepeda2005@gmail.com">bekzepeda2005@gmail.com</a>.</p>
   {/if}
 </form>
 

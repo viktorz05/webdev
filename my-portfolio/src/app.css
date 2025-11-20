@@ -1,17 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@theme {
+	--font-roboto : 'Roboto', sans-serif;
+}
+body {
+	--bg0: #EBE8E2;
+	background-color: var(--bg0);
+	font-family: var(--font-roboto);
+}
 /* Minimal layout utilities for header/footer and content containers */
 .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
 .site-header { border-bottom: 1px solid rgba(0,0,0,0.06); }
-.site-title { display:inline-block; margin:0; font-size:1.1rem; }
+.site-title { display:inline-block; margin:0; font-size:1.1rem; font-weight: 500;}
 .site-title a { text-decoration:none; color:inherit; }
 .site-nav { float:right; display:flex; gap:1rem; align-items:center; }
 .nav-link { color: #1f2937; text-decoration:none; font-weight:600; }
 .site-main { padding: 2rem 0; }
 .site-footer { border-top: 1px solid rgba(0,0,0,0.06); padding: 0.75rem 0; text-align:center; }
-
+.hero-container {
+	text-align: center;
+	font-weight: 700;
+}
 /* simple responsive tweaks */
 @media (max-width:640px) {
 	.site-nav { float:none; margin-top:0.5rem; }
