@@ -7,9 +7,10 @@
 	--font-roboto : 'Roboto', sans-serif;
 }
 body {
-	--bg0: #EBE8E2;
+	--bg0: #000000;
 	background-color: var(--bg0);
 	font-family: var(--font-roboto);
+	color: white;
 }
 /* Minimal layout utilities for header/footer and content containers */
 .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
@@ -22,9 +23,26 @@ body {
 .site-footer { border-top: 1px solid rgba(0,0,0,0.06); padding: 0.75rem 0; text-align:center; }
 .hero-container {
 	text-align: center;
-	font-weight: 700;
+	font-weight: 100;
+	padding-top: 1;
 }
 /* simple responsive tweaks */
 @media (max-width:640px) {
 	.site-nav { float:none; margin-top:0.5rem; }
+}
+
+.carousel {
+	margin: 3em auto;
+	display: flex;
+	gap: 1em;
+}
+
+.card {
+	flex: 0 0 20;
+	height: 12em;
+	background-color: beige;
+	padding: 1em;
+	border-radius: .5em;
+	text-align: center;
+	align-content: center;
 }
