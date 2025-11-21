@@ -1,8 +1,14 @@
 <script>
 	import ContactForm from '$lib/ContactForm.svelte';
 	import Carousel from './Carousel.svelte';
-	import Card from './Card.svelte';
 </script>
+
+<video
+  class="fixed top-0 left-0 w-screen h-screen object-cover -z-10 pointer-events-none"
+  autoplay muted loop playsinline
+>
+  <source src="/background.mov" type="video/mp4" />
+</video>
 
 <section class="hero container glassbox">
 		<h1 class="hero-title text-5xl font-bold">Viktor Zepeda Sánchez</h1>

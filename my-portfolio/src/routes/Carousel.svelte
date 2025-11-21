@@ -2,9 +2,9 @@
     import '../app.css';
 </script>
 <div class = "carousel">
-    <div class ="card glassbox"> Uma</div>
-    <div class ="card glassbox"> SFU Sprint</div>
-    <div class ="card glassbox"> SFU Fitness App</div>
+    <div class ="card glassbox font-bold"> Uma</div>
+    <div class ="card glassbox font-bold"> SFU Sprint</div>
+    <div class ="card glassbox font-bold"> SFU Fitness App</div>
 </div>
 
 <style>
@@ -70,6 +70,10 @@
         justify-content: center;
         text-align: center;
         color: white;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        transition: 0.2s ease;
     }
 </style>
 
