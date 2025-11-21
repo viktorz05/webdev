@@ -4,7 +4,7 @@
 	let { children } = $props();
 </script>
 
-<header class="site-header">
+<header class="site-header ">
 	<div class="container">
 		<h1 class="site-title"><a href="/">Hi there!</a></h1>
 		<nav class="site-nav" aria-label="Primary">
