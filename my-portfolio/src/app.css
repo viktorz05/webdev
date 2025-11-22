@@ -12,9 +12,28 @@ body {
 	font-family: var(--font-roboto);
 	color: white;
 }
+@theme {
+	--font-roboto : 'Roboto', sans-serif;
+}
+body {
+	/* --bg0: #000000;
+	background-color: var(--bg0); */
+	background-image: url('/clouds.jpg');
+	background-position: center;
+	font-family: var(--font-roboto);
+	color: white;
+}
 /* Minimal layout utilities for header/footer and content containers */
 .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
 .site-header { border-bottom: 1px solid rgba(0,0,0,0.06); }
+.site-title { display:inline-block; margin:0; font-size:1.1rem; font-weight: 500;}
+.site-header { 
+	border-bottom: 1px solid rgba(255, 255, 255, 0.575);
+	background-color: rgba(0, 0, 0, 0.3); 
+	backdrop-filter: blur(25px);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+
+}
 .site-title { display:inline-block; margin:0; font-size:1.1rem; font-weight: 500;}
 .site-title a { text-decoration:none; color:inherit; }
 .site-nav { float:right; display:flex; gap:1rem; align-items:center; }
@@ -26,23 +45,52 @@ body {
 	font-weight: 100;
 	padding-top: 1;
 }
+.hero-container {
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto;
+	gap: 1rem;
+	align-items: start;
+	text-align: center;
+	font-weight: 100;
+	padding-top: 1;
+}
+.hero-title {
+  grid-column: 1 / 2; /*column 1 */
+  grid-row: 1;        /* row 1 */
+}
+
+.hero-text {
+  grid-column: 2 / 3; /* column 2 */
+  grid-row: 1;        /* row 1 */
+  text-align: right;
+}
+
+.hero-photo {
+  grid-column: 2 / 3; /* below the text */
+  grid-row: 2;        /* row 2 */
+  width: 200px;
+  border-radius: 1rem;
+  justify-self: end;   /* align to right */
+}
+
 /* simple responsive tweaks */
 @media (max-width:640px) {
 	.site-nav { float:none; margin-top:0.5rem; }
 }
 
-.carousel {
-	margin: 3em auto;
-	display: flex;
-	gap: 1em;
+.glassbox {
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(25px);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.575);
+	padding: 2rem;
+	position: relative;
+	display: flex;;
+	border-radius: 1rem;
+	margin-bottom: 2rem;
 }
 
-.card {
-	flex: 0 0 20;
-	height: 12em;
-	background-color: beige;
-	padding: 1em;
-	border-radius: .5em;
-	text-align: center;
-	align-content: center;
+.glassbox--dark {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }
