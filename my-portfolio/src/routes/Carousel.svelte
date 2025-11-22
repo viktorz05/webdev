@@ -82,7 +82,7 @@
     transform-style: preserve-3d;
     }
     .card:hover {
-        transform: scale(1.05);
+        transform: scale(1.025);
         transition: 0.2s ease;
     }
 </style>

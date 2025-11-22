@@ -1,6 +1,7 @@
 <script>
 	import ContactForm from '$lib/ContactForm.svelte';
 	import Carousel from './Carousel.svelte';
+	import IconBar from './IconBar.svelte';
 </script>
 
 <video
@@ -12,14 +13,23 @@
 
 
 <section class="container glassbox hero-flex">
-	<div class="hero-title-block">
-		<h1 class="hero-title text-5xl font-roboto font-bold">Viktor Zepeda Sánchez</h1>
-		<img src="/linkedin.jpg" alt="Viktor Zepeda Sánchez" class="hero-photo"/>
+  <h1 class="hero-title text-5xl font-roboto font-bold">
+    Viktor Zepeda Sánchez
+  </h1>
+
+  <div class="hero-content-row">
+	  <img src="/linkedin.jpg" alt="Viktor Zepeda Sánchez" class="hero-photo"/>
+	  
+	  <p class="hero-text text-2xl">
+		  Hi, I'm a third year Computer Science student interested in computer graphics 
+		  and game engines. 
+		  <br /><br />
+		  I enjoy working on projects that challenge me to learn new skills and technologies.
+		  <br /><br />
+		  Check out some of the languages and frameworks I work with below!
+		</p>
 	</div>
-	<div class="hero-text-block">
-		<p class="hero-text">Hi, I'm a third year Computer Science student interested in computer graphics 
-			and game engines.<br></p>
-	</div>
+	<IconBar />
 </section>
 
 <section class="container">
