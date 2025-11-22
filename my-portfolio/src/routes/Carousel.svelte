@@ -70,6 +70,16 @@
         justify-content: center;
         text-align: center;
         color: white;
+        perspective: 1000px;
+    }
+
+    .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
     }
     .card:hover {
         transform: scale(1.05);
