@@ -5,7 +5,7 @@
 </script>
 
 <video
-  class="fixed top-0 left-0 w-screen h-screen object-cover -z-10 pointer-events-none"
+  class="fixed top-0 left-0 w-screen h-screen object-cover z-[-2]"
   autoplay muted loop playsinline
 >
   <source src="/background.webm" type="video/webm" />
