@@ -1,25 +1,33 @@
+import 'dotenv/config';
+import { createClient } from '@libsql/client';
 import * as auth from '$lib/server/auth';
 
-const handleAuth = async ({ event, resolve }) => {
-	const sessionToken = event.cookies.get(auth.sessionCookieName);
+const client = createClient({
+  url: process.env.DATABASE_URL
+});
 
-	if (!sessionToken) {
-		event.locals.user = null;
-		event.locals.session = null;
-		return resolve(event);
-	}
+export async function handle({ event, resolve }) {
+  // attach database client
+  event.locals.db = client;
 
-	const { session, user } = await auth.validateSessionToken(sessionToken);
+  // authentication logic (merged here so there's a single `handle` export)
+  const sessionToken = event.cookies.get(auth.sessionCookieName);
+  if (!sessionToken) {
+    event.locals.user = null;
+    event.locals.session = null;
+    return resolve(event);
+  }
 
-	if (session) {
-		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
-	} else {
-		auth.deleteSessionTokenCookie(event);
-	}
+  const { session, user } = await auth.validateSessionToken(sessionToken);
 
-	event.locals.user = user;
-	event.locals.session = session;
-	return resolve(event);
-};
+  if (session) {
+    auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
+  } else {
+    auth.deleteSessionTokenCookie(event);
+  }
 
-export const handle = handleAuth;
+  event.locals.user = user;
+  event.locals.session = session;
+
+  return resolve(event);
+}
