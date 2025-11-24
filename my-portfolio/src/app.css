@@ -18,7 +18,7 @@ body {
 	background-color: var(--bg0); */
 	/* background-image: url('/clouds.jpg');
 	background-position: center; */
-	background-color: black;
+	background: transparent;
 	font-family: var(--font-sans);
 	color: white;
 }
@@ -87,7 +87,7 @@ body {
   }
 
   .hero-photo {
-    width: 100%;
+    max-width: 100%;
 	height: auto;
   }
 

@@ -4,11 +4,10 @@
 	import IconBar from './IconBar.svelte';
 </script>
 
-<video
-  class="fixed top-0 left-0 w-screen h-screen object-cover z-[-2]"
-  autoplay muted loop playsinline
->
+<video class="fixed inset-0 w-screen h-screen object-cover -z-10 pointer-events-none" 
+autoplay muted loop playsinline>
   <source src="/background.webm" type="video/webm" />
+  <source src="/background.mp4" type="video/mp4" />
 </video>
 
 
