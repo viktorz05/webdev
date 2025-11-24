@@ -1,4 +1,5 @@
 <script>
+  import '../app.css';
   import { onMount } from 'svelte';
   let name = '';
   let email = '';
@@ -29,7 +30,7 @@
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
-          // Let Formspree infer content type from FormData
+          'Accept': 'application/json'
         },
         body: payload
       });
@@ -98,9 +99,17 @@
 .form-row { margin-bottom: 0.75rem; display:flex; flex-direction:column; }
 .form-row label { font-size:0.9rem; margin-bottom:0.25rem; }
 .form-row input,
-.form-row textarea { padding:0.5rem; border:1px solid var(--border,#ddd); border-radius:6px; }
+.form-row textarea { 
+  padding:0.5rem; 
+  border-radius:6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.575);
+	background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(25px);
+	/* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3); */
+}
 .form-actions { margin-top:0.5rem; }
-.btn { background:#111; color:#fff; padding:0.6rem 1rem; border-radius:6px; border:none; cursor:pointer; }
+.btn { background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(25px); color:#fff; padding:0.6rem 1rem; border-radius:6px; border-color: rgba(255, 255, 255, 0.3); cursor:pointer; }
 .form-success { color:green; margin-top:0.75rem; }
 .form-error { color:crimson; margin-top:0.75rem; }
 </style>
