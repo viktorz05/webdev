@@ -14,10 +14,11 @@
 }
 
 body {
-	--bg0: #000000;
+	/* --bg0: #000000;
 	background-color: var(--bg0);
 	/* background-image: url('/clouds.jpg');
-	background-position: center; */
+	background-position: center; */ 
+	background: transparent;
 	font-family: var(--font-sans);
 	color: white;
 }
