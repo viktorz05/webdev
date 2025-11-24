@@ -14,10 +14,6 @@
 }
 
 body {
-	/* --bg0: #000000;
-	background-color: var(--bg0);
-	/* background-image: url('/clouds.jpg');
-	background-position: center; */ 
 	background: transparent;
 	font-family: var(--font-sans);
 	color: white;
@@ -87,10 +83,10 @@ body {
   }
 
   .hero-photo {
-	flex: none;
+	/* flex: none; */
     max-width: 100%;
 	height: auto;
-	object-fit: contain;;
+	/* object-fit: contain; */
   }
 
   .hero-text {
