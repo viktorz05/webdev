@@ -24,7 +24,8 @@
   }
 
   .box {
-    width: 300px;
+    width: 100%;
+    max-width: 100%;
     border: 1px solid rgb(221, 221, 221);
     padding: 25px;
     border-radius: 10px;

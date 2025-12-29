@@ -1,5 +1,14 @@
 <script>
   import AnimatedElement from '$lib/AnimatedElement.svelte';
+  import { onMount } from 'svelte';
+
+  let titleElement;
+
+  onMount(() => {
+    if (titleElement) {
+      titleElement.classList.add('fade-in-title');
+    }
+  });
 </script>
 <head>
     <title>Invitación de Boda - Victoria y Luis</title>
@@ -8,26 +17,22 @@
     <link rel="icon" href="/favicon.ico">
 </head>
 <div>
-    <h1 class="font-cursive text-8xl font-bold text-center mt-10"> 
+    <h1 bind:this={titleElement} class="autoShow font-cursive text-8xl font-bold text-center mt-10"> 
     Victoria y Luis 
     </h1>
 </div>
 
-<div class="full-height">
-    <AnimatedElement>
-    <p class="text-5xl text-center mt-5"> Te invitamos a celebrar nuestro matrimonio</p>
-    <h2 class="text-6xl text-center mt-10">
+<div class="autoShow container">
+    <p class=" text-5xl text-center mt-5"> Te invitamos a celebrar nuestro matrimonio</p>
+    <h2 class=" text-6xl text-center mt-10">
         Centro de convenciones Tlatelolco
         <p class="text-5xl text-center mt-2"> 29 de Mayo de 2026 </p>
     </h2>
-</AnimatedElement>
 </div>
 
-<div class="full-height">
-  <AnimatedElement>
-    <h2 class="text-5xl text-center">Ceremonia Religiosa</h2>
+<div class="autoShow container">
+    <h2 class=" text-5xl text-center">Ceremonia Religiosa</h2>
     <p class="text-3xl mt-4 text-center">4:00 PM</p>
-  </AnimatedElement>
 </div>
 
 
@@ -42,6 +47,11 @@
     referrerpolicy="no-referrer-when-downgrade"
     src="https://www.google.com/maps/embed/v1/place?q=place_id:El1NYW51ZWwgR29uemFsZXogMTcxLCBTYW4gU2ltw7NuIFRvbG5haHVhYywgQ3VhdWh0w6ltb2MsIDA2OTAwIENpdWRhZCBkZSBNw6l4aWNvLCBDRE1YLCBNZXhpY28iMRIvChQKEgkHfcTDIfnRhRH1tJhRxLO67xCrASoUChIJw0WHHyL50YURYy727kZCPtc&key=AIzaSyDNgtmWED0jXIcVcRNNEj9yFsEJvKD5TIk">
     </iframe>
+</div>
+
+<div class="autoShow container">
+    <h1 class= "text-5xl text-center">Asistencia</h1>
+    <p class = "text-5xl text-center">Tu presencia es importante! Confirma tu asistencia en el formulario de abajo:</p>
 </div>
 
 
@@ -62,5 +72,34 @@
         display: flex;
         justify-content: center;
         align-items: center;
+  }
+
+  .autoShow {
+    animation: text-appear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 100vh;
+  }
+  @keyframes text-appear {
+    from {
+        opacity: 0;
+        transform: translateY(100px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in-title {
+    animation: fade-in 1s ease-in forwards;
   }
 </style>   

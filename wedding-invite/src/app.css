@@ -3,6 +3,7 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+
 @theme {
     --font-sans: 'Noto Sans', sans-serif;
     --font-cursive: 'Tangerine', cursive;
@@ -15,3 +16,12 @@ body {
     background-color: var(--bg0);
     font-family: var(--font-roboto-serif);
 }
+
+.site-header { 
+	border-bottom: 1px solid rgba(255, 255, 255, 0.575);
+	background-color: rgba(0, 0, 0, 0.3); 
+	backdrop-filter: blur(25px);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 1rem; }
