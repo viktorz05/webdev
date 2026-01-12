@@ -12,7 +12,7 @@
 }
 
 body {
-    --bg0: #F7D9BC;
+    --bg0: #ccd3c1;
     background-color: var(--bg0);
     font-family: var(--font-roboto-serif);
 }
