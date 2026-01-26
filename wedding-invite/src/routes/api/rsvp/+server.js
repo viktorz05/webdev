@@ -3,18 +3,42 @@ import archiver from 'archiver';
 import QRCode from 'qrcode';
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
 async function pngBuffer(url) {
   return QRCode.toBuffer(url, { type: 'png', width: 400 });
 }
 
 export async function POST({ request }) {
   try {
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
+    
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error(`Missing Supabase credentials: url=${!!supabaseUrl}, key=${!!supabaseKey}`);
+    }
+    
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const body = await request.json();
     const total = Number(body.guests || 1);
+
+    // Fetch group if a group token was provided
+    let groupId = null;
+    if (body.group_token) {
+      const { data: groupData, error: groupErr } = await supabase
+        .from('invitation_groups')
+        .select('id, suggested_guests')
+        .eq('token', body.group_token)
+        .single();
+      
+      if (groupErr) {
+        console.warn('Group not found:', groupErr);
+      } else if (groupData) {
+        groupId = groupData.id;
+        // Use suggested_guests if provided, otherwise use what was submitted
+        if (!body.guests) {
+          body.guests = groupData.suggested_guests;
+        }
+      }
+    }
 
     // Insert RSVP record (let the DB set timestamps to avoid schema case issues)
     const { data: rsvpData, error: rsvpErr } = await supabase.from('rsvps').insert({
@@ -23,7 +47,8 @@ export async function POST({ request }) {
       song_request: body.song_request || null,
       message: body.message || null,
       token_base: body.id || null,
-      guests: total
+      guests: total,
+      group_id: groupId
     }).select().single();
 
     if (rsvpErr) throw rsvpErr;
@@ -35,7 +60,7 @@ export async function POST({ request }) {
     const baseId = body.id || `guest-${rsvpId}`;
     for (let i = 0; i < total; i++) {
       const token = `${baseId}-${i + 1}`;
-      const url = `${process.env.BASE_ORIGIN || 'http://localhost:5173'}/rsvp?id=${encodeURIComponent(token)}`;
+      const url = `${process.env.BASE_ORIGIN || 'http://localhost:5173'}/checkin?token=${encodeURIComponent(token)}`;
       const label = `${(body.name || 'guest')}-${i + 1}`;
       tokensToInsert.push({ token, rsvp_id: rsvpId, label });
       items.push({ id: token, label, url });

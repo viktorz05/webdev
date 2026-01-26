@@ -2,10 +2,20 @@ import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { loadEnv } from 'vite';
 
-export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
-	test: {
+export default defineConfig(({ mode }) => {
+	const env = loadEnv(mode, process.cwd(), '');
+
+	return {
+		plugins: [tailwindcss(), sveltekit()],
+		define: {
+			'process.env': JSON.stringify(env)
+		},
+		ssr: {
+			external: ['@supabase/supabase-js']
+		},
+		test: {
 		expect: { requireAssertions: true },
 		projects: [
 			{
@@ -32,4 +42,5 @@ export default defineConfig({
 			}
 		]
 	}
+	};
 });

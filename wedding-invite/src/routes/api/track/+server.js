@@ -1,12 +1,16 @@
 import { json } from '@sveltejs/kit';
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
 export async function POST({ request }) {
   try {
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
+    
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error(`Missing Supabase credentials: url=${!!supabaseUrl}, key=${!!supabaseKey}`);
+    }
+    
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const data = await request.json();
 
     await supabase.from('tracks').insert({
