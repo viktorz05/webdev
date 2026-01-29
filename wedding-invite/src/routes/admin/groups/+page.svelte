@@ -22,7 +22,14 @@
     try {
       const res = await fetch('/api/admin/groups');
       if (res.ok) {
-        groups = await res.json();
+        const data = await res.json();
+        // compute full invite link on the client to avoid SSR/hydration issues
+        groups = data.map(g => ({
+          ...g,
+          inviteLink: (typeof window !== 'undefined')
+            ? `${window.location.origin}/?group=${encodeURIComponent(g.token)}`
+            : `/?group=${encodeURIComponent(g.token)}`
+        }));
       }
     } catch (e) {
       console.error('Failed to load groups', e);
@@ -46,8 +53,12 @@
       });
 
       if (res.ok) {
-        const newGroup = await res.json();
-        groups = [...groups, newGroup];
+          const newGroup = await res.json();
+          // compute inviteLink for the newly created group as well
+          newGroup.inviteLink = (typeof window !== 'undefined')
+            ? `${window.location.origin}/?group=${encodeURIComponent(newGroup.token)}`
+            : `/?group=${encodeURIComponent(newGroup.token)}`;
+          groups = [...groups, newGroup];
         formData = {
           group_name: '',
           group_type: 'family',
@@ -81,10 +92,6 @@
     } catch (e) {
       console.error('Failed to delete group', e);
     }
-  }
-
-  function generateInviteLink(token) {
-    return `${window.location.origin}/?group=${encodeURIComponent(token)}`;
   }
 
   function copyToClipboard(text) {
@@ -222,13 +229,13 @@
                 <input
                   type="text"
                   readonly
-                  value={generateInviteLink(group.token)}
+                  value={group.inviteLink}
                   class="link-input"
                 />
                 <button
                   class="btn-copy"
                   title="Copy link"
-                  on:click={() => copyToClipboard(generateInviteLink(group.token))}
+                  on:click={() => copyToClipboard(group.inviteLink)}
                 >
                   🔗
                 </button>

@@ -26,14 +26,27 @@ async function getSupabase() {
 export async function GET({ url }) {
   try {
     const supabase = await getSupabase();
-    
+    const token = url.searchParams.get('token');
+
+    if (token) {
+      // If a token is provided, return only that group (as an array for client compatibility)
+      const { data, error } = await supabase
+        .from('invitation_groups')
+        .select('*')
+        .eq('token', token)
+        .limit(1);
+
+      if (error) throw error;
+      return json(data ? data : []);
+    }
+
     const { data, error } = await supabase
       .from('invitation_groups')
       .select('*')
       .order('created_at', { ascending: false });
-    
+
     if (error) throw error;
-    
+
     return json(data || []);
   } catch (e) {
     console.error('Error fetching groups:', e);
