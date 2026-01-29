@@ -6,8 +6,14 @@ export async function GET() {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
     
+    console.log('Checking credentials:', {
+      hasUrl: !!supabaseUrl,
+      hasKey: !!supabaseKey,
+      url: supabaseUrl ? supabaseUrl.substring(0, 30) + '...' : 'missing'
+    });
+    
     if (!supabaseUrl || !supabaseKey) {
-      throw new Error('Missing Supabase credentials');
+      throw new Error(`Missing Supabase credentials: url=${!!supabaseUrl}, key=${!!supabaseKey}`);
     }
     
     const supabase = createClient(supabaseUrl, supabaseKey);
@@ -17,7 +23,15 @@ export async function GET() {
       .from('rsvps')
       .select('*');
 
-    if (rsvpError) throw rsvpError;
+    if (rsvpError) {
+      console.error('RSVP fetch error:', rsvpError);
+      throw rsvpError;
+    }
+
+    if (!rsvps) {
+      console.log('No RSVPs found or null data returned');
+      return json([]);
+    }
 
     // For each RSVP, count how many tokens are checked in
     const rsvpsWithCheckIns = await Promise.all(
@@ -28,7 +42,14 @@ export async function GET() {
           .eq('rsvp_id', rsvp.id)
           .eq('checked_in', true);
 
-        if (countError) throw countError;
+        if (countError) {
+          console.warn('Error counting check-ins for RSVP', rsvp.id, ':', countError);
+          // Don't throw, just set count to 0
+          return {
+            ...rsvp,
+            checked_in_count: 0
+          };
+        }
 
         return {
           ...rsvp,
@@ -40,6 +61,6 @@ export async function GET() {
     return json(rsvpsWithCheckIns);
   } catch (e) {
     console.error('admin/rsvps error', e);
-    return json({ error: String(e) }, { status: 500 });
+    return json({ error: String(e), details: e.message }, { status: 500 });
   }
 }

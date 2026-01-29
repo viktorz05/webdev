@@ -8,9 +8,16 @@
 	onMount(async () => {
 		try {
 			const response = await fetch('/api/admin/rsvps');
-			if (!response.ok) throw new Error('Failed to load RSVPs');
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.error || `Failed to load RSVPs (${response.status})`);
+			}
 			rsvps = await response.json();
+			if (rsvps.error) {
+				throw new Error(rsvps.error);
+			}
 		} catch (e) {
+			console.error('Error loading RSVPs:', e);
 			error = e.message;
 		} finally {
 			loading = false;

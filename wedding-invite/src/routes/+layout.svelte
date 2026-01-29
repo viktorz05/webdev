@@ -6,9 +6,7 @@
 </script>
 
 <header class = "site-header">
-	<h1>
-		hola
-	</h1>
+
 </header>
 <svelte:head>
 	<link rel="icon" href={favicon} />
