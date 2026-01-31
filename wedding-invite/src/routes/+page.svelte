@@ -8,6 +8,8 @@
   let currentPhotoIndex = 0;
   let groupToken = null;
   let groupInfo = null;
+  let maxGuests = null;
+  let groupError = '';
 
   // Photo carousel state
   const photos = [
@@ -50,17 +52,20 @@
     if (group) {
       groupToken = group;
       try {
-        const res = await fetch(`/api/admin/groups?token=${encodeURIComponent(group)}`);
-        if (res.ok) {
-          const groups = await res.json();
-          if (groups.length > 0) {
-            groupInfo = groups[0];
-          }
+        const response = await fetch(`/api/admin/groups?token=${encodeURIComponent(group)}`);
+        const groupData = await response.json();
+        if (groupData.length > 0) {
+          groupInfo = groupData[0];
+          maxGuests = groupData[0].suggested_guests;
+          document.querySelector('input[name="guests"]').value = maxGuests;
+        } else {
+            groupError = 'Token de grupo inválido.';
         }
-      } catch (e) {
-        console.warn('Failed to fetch group info', e);
-      }
+    } catch (e) {
+    console.warn('Failed to fetch group info', e);
+    groupError = 'No se pudo obtener la información del grupo.';
     }
+}
 
       if (id) {
         visitorId = id;
@@ -295,8 +300,14 @@
             class="form-input"
             required
         >
-
-        <label for="guests" class="form-label">¿Cuántas personas (incluyéndote)?</label>
+        {#if groupError}
+            <div class="error-message">{groupError}</div>
+        {/if}
+        <label for="guests" class="form-label">¿Cuántas personas (incluyéndote)?
+            {#if maxGuests}
+                <span class="guest-limit">(máximo {maxGuests})</span>
+            {/if}
+        </label>
         <input
           type="number"
           id="guests"

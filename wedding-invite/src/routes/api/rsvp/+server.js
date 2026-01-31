@@ -20,8 +20,13 @@ export async function POST({ request }) {
     const body = await request.json();
     const total = Number(body.guests || 1);
 
+    if (total < 1 || total > 10) {
+      return json({ ok: false, error: "Numero de invitados invalido (1-10)" }, { status: 400 });
+    }
+
     // Fetch group if a group token was provided
     let groupId = null;
+    let maxGuests = null;
     if (body.group_token) {
       const { data: groupData, error: groupErr } = await supabase
         .from('invitation_groups')
@@ -33,13 +38,22 @@ export async function POST({ request }) {
         console.warn('Group not found:', groupErr);
       } else if (groupData) {
         groupId = groupData.id;
+        maxGuests = groupData.suggested_guests;
         // Use suggested_guests if provided, otherwise use what was submitted
         if (!body.guests) {
           body.guests = groupData.suggested_guests;
         }
       }
-    }
 
+      if (total > maxGuests) {
+        return json({ ok: false, error: `El numero maximo de invitados para este grupo es ${maxGuests}` }, { status: 400 });
+      }
+
+      if (!body.guests) {
+        body.guests = maxGuests;
+      }
+    }
+  
     // Insert RSVP record (let the DB set timestamps to avoid schema case issues)
     const { data: rsvpData, error: rsvpErr } = await supabase.from('rsvps').insert({
       name: body.name || null,
