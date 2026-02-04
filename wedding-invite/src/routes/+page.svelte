@@ -13,7 +13,7 @@
 
   // Photo carousel state
   const photos = [
-    '/hands.jpeg',
+    '/snow.jpeg',
     '/kiss.jpeg',
     '/beach.jpg',
   ];
@@ -260,6 +260,22 @@
 <div class="autoShow container section-block">
     <h1 class="section-title">Regalos</h1>
     <p class="section-description">Apreciamos tu presencia pero si gustas regalarnos algo aquí tienes los datos</p>
+            <table class="wire-table" aria-label="Datos para regalo">
+                <tbody>
+                    <tr>
+                        <td class="wire-label">CLABE</td>
+                        <td class="wire-value">722969010490658426</td>
+                    </tr>
+                    <tr>
+                        <td class="wire-label">Beneficiario</td>
+                        <td class="wire-value">Luis Guillermo Garcia Cordova</td>
+                    </tr>
+                    <tr>
+                        <td class="wire-label">Institución</td>
+                        <td class="wire-value">Mercado Pago W</td>
+                    </tr>
+                </tbody>
+            </table>
 </div>
 
 <div class="autoShow container section-block">
@@ -1067,5 +1083,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    /* Wire transfer / regalo table */
+    .wire-table {
+        margin: 1rem auto 0;
+        width: 100%;
+        max-width: 600px;
+        border-collapse: collapse;
+        text-align: left;
+    }
+    .wire-table td {
+        padding: 0.5rem 0.25rem;
+        vertical-align: top;
+    }
+    .wire-label {
+        width: 35%;
+        font-weight: 700;
+        color: #2d2d2d;
+        padding-right: 1rem;
+    }
+    .wire-value {
+        color: #4a4a4a;
+        word-break: break-word;
     }
 </style>   
