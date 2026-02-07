@@ -892,6 +892,19 @@
         height: 4rem;
     }
 
+  .guest-limit {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 0.5rem;
+  }
+  .error-message {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
     /* Animations */
     @keyframes slideInDown {
         from {
