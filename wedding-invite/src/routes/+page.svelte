@@ -225,7 +225,7 @@
           <p class="detail-value"> 29 de Mayo de 2026 </p>
         </div>
         <div class="autoShow detail-card">
-          <h2 class="detail-title">Hora</h2>
+          <h2 class="detail-title">Recepción</h2>
           <p class="detail-value"> 7:30 - 8:00 PM </p>
         </div>
       </div>
@@ -254,12 +254,22 @@
 
 <div class="autoShow container section-block">
     <h1 class="section-title">Código de vestimenta</h1>
-    <p class="section-description">Formal</p>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h2 class="detail-title">Damas</h2>
+                <p class="section-description">Vestido largo o coctel evitando los colores blanco, beige crema y rojo</p>
+            </div>
+            <div class="detail-card">
+                <h2 class="detail-title">Caballeros</h2>
+                <p class="section-description">Traje oscuro o smoking y zapatos formales</p>
+            </div>
+        </div>
+        <p class="detail-value">¡No olvides llevar tus tenis para bailar!</p>
 </div>
 
 <div class="autoShow container section-block">
     <h1 class="section-title">Regalos</h1>
-    <p class="section-description">Apreciamos tu presencia pero si gustas regalarnos algo aquí tienes los datos</p>
+    <p class="section-description">Para nosotros lo más importante es tu presencia, pero si deseas darnos un presente te compartimos los siguientes datos bancarios:</p>
             <table class="wire-table" aria-label="Datos para regalo">
                 <tbody>
                     <tr>
