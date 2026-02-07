@@ -312,9 +312,10 @@
           type="number"
           id="guests"
           min="1"
+          max ={maxGuests || 10}
           name="guests"
           placeholder="1"
-          value="1"
+          value={maxGuests || 1}
           class="form-input"
           required
         />

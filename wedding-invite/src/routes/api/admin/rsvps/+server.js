@@ -13,7 +13,7 @@ export async function GET() {
     });
     
     if (!supabaseUrl || !supabaseKey) {
-      throw new Error(`Missing Supabase credentials: url=${!!supabaseUrl}, key=${!!supabaseKey}`);
+      throw new Error('Missing Supabase credentials');
     }
     
     const supabase = createClient(supabaseUrl, supabaseKey);
